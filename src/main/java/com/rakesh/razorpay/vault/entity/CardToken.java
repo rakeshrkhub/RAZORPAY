@@ -20,7 +20,7 @@ public class CardToken {
     @Column(nullable = false, length = 50, unique = true)
     private String token;
 
-    @Column(name = "merchant_id", nullable = false)
+    @Column(name = "customer_id", nullable = false)
     private UUID customer;
 
     @Column(name = "merchant_id", nullable = false)
