@@ -2,10 +2,16 @@ package com.rakesh.razorpay.merchant.entity;
 
 import com.rakesh.razorpay.common.enums.UserRole;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "app_users")
 public class AppUser {
     @Id

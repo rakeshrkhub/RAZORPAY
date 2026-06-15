@@ -1,6 +1,7 @@
 package com.rakesh.razorpay.operations.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "settlement_payment")
@@ -21,8 +22,9 @@ public class SettlementPayment {
     avoiding manual synchronization of foreign key and primary key values.
      */
 
-    @MapsId()
+    @MapsId("settlementId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "settlement_id", nullable = false )
     private Settlement settlement;
+
 }

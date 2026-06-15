@@ -2,12 +2,18 @@ package com.rakesh.razorpay.merchant.entity;
 
 import com.rakesh.razorpay.common.enums.Environment;
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "api_keys")
 public class ApiKey {
     @Id
@@ -29,6 +35,7 @@ public class ApiKey {
     private Environment environment;
 
     @Column(nullable = false)
+    @Builder.Default
     private boolean enabled=true;
 
     private LocalDateTime lastUsedAt;
