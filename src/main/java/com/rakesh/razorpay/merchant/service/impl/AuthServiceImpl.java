@@ -10,20 +10,20 @@ import com.rakesh.razorpay.merchant.entity.Merchant;
 import com.rakesh.razorpay.merchant.repository.AppUserRepository;
 import com.rakesh.razorpay.merchant.repository.MerchantRepository;
 import com.rakesh.razorpay.merchant.service.AuthService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(readOnly = true)
 public class AuthServiceImpl implements AuthService {
     private final AppUserRepository appUserRepository;
     private final MerchantRepository merchantRepository;
 
     @Override
-    @Transactional
     public MerchantResponse signUp(MerchantSignUpRequest signUpRequest) {
         if(merchantRepository.existsByEmail(signUpRequest.email())){
             log.error("Merchant with email {} already exists", signUpRequest.email());
