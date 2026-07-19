@@ -2,7 +2,7 @@ package com.rakesh.razorpay.payment.controller;
 
 import com.rakesh.razorpay.payment.dto.request.CreateOrderRequest;
 import com.rakesh.razorpay.payment.dto.response.OrderResponse;
-import com.rakesh.razorpay.payment.service.impl.OrderService;
+import com.rakesh.razorpay.payment.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

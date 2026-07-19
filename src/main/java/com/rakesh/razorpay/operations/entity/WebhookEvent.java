@@ -1,5 +1,6 @@
 package com.rakesh.razorpay.operations.entity;
 
+import com.rakesh.razorpay.common.entity.BaseEntity;
 import com.rakesh.razorpay.common.enums.WebhookEventStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -11,7 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "webhook_events")
-public class WebhookEvent {
+public class WebhookEvent extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

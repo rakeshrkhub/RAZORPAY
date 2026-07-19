@@ -1,5 +1,6 @@
 package com.rakesh.razorpay.merchant.entity;
 
+import com.rakesh.razorpay.common.entity.BaseEntity;
 import com.rakesh.razorpay.common.enums.Environment;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,8 +15,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "api_keys")
-public class ApiKey {
+@Table(name = "api_keys",
+    indexes = {
+        @Index(name = "idx_api_keys_merchant_env", columnList = "merchant_id, environment,enabled")
+    })
+public class ApiKey extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

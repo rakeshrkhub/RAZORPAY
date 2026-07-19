@@ -1,5 +1,6 @@
 package com.rakesh.razorpay.operations.entity;
 
+import com.rakesh.razorpay.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

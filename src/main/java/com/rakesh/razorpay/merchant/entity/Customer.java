@@ -1,5 +1,6 @@
 package com.rakesh.razorpay.merchant.entity;
 
+import com.rakesh.razorpay.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -14,8 +15,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "customers")
-public class Customer {
+@Table(name = "customers",
+indexes = {
+        @Index(name = "idx_customers_merchant_id", columnList = "merchant_id"),
+        @Index(name = "idx_customers_email", columnList = "email")
+})
+public class Customer extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

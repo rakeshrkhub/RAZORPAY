@@ -7,6 +7,7 @@ import com.rakesh.razorpay.merchant.dto.response.ApiKeyCreateResponse;
 import com.rakesh.razorpay.merchant.dto.response.ApiKeyResponse;
 import com.rakesh.razorpay.merchant.entity.ApiKey;
 import com.rakesh.razorpay.merchant.entity.Merchant;
+import com.rakesh.razorpay.merchant.mapper.ApiKeyMapper;
 import com.rakesh.razorpay.merchant.repository.ApiKeyRepository;
 import com.rakesh.razorpay.merchant.repository.MerchantRepository;
 import com.rakesh.razorpay.merchant.service.ApiKeyService;
@@ -26,6 +27,7 @@ import java.util.UUID;
 public class ApiKeyServiceImpl implements ApiKeyService {
     private final ApiKeyRepository apiKeyRepository;
     private final MerchantRepository merchantRepository;
+    private final ApiKeyMapper apiKeyMapper;
 
     @Override
     public ApiKeyCreateResponse create(UUID merchantId, ApiKeyRequest apiKeyRequest) {
@@ -46,17 +48,7 @@ public class ApiKeyServiceImpl implements ApiKeyService {
 
     @Override
     public List<ApiKeyResponse> getApiKeysByMerchantId(UUID merchantId) {
-        return apiKeyRepository.findByMerchant_Id(merchantId)
-                .stream()
-                .map(apiKey ->
-                        new ApiKeyResponse(
-                                apiKey.getId(),
-                                apiKey.getKeyId(),
-                                apiKey.getEnvironment(),
-                                apiKey.isEnabled(),
-                                apiKey.getLastUsedAt(),
-                                null))
-                .toList();
+        return apiKeyMapper.toApiKeyResponseList(apiKeyRepository.findByMerchant_Id(merchantId));
     }
 
     @Override
@@ -73,6 +65,9 @@ public class ApiKeyServiceImpl implements ApiKeyService {
         ApiKey apiKey = apiKeyRepository.findById(keyId)
                 .filter(key -> key.getMerchant().getId().equals(merchantId))
                 .orElseThrow(() -> new ResourceNotFoundException("API_KEY_NOT_FOUND", "API Key not found with keyId: " + keyId + " for merchantId: " + merchantId));
+        if(!apiKey.isEnabled()) {
+            throw new IllegalStateException("API Key is disabled and cannot be rotated.");
+        }
         apiKey.setPreviousKeySecretHash(apiKey.getKeySecretHash());
         String newRawSecret = RandomizerUtil.generateRandomString(32);
         apiKey.setKeySecretHash(newRawSecret); //TODO: encode the newRawSecret with BcryptPasswordEncoder before saving to DB
