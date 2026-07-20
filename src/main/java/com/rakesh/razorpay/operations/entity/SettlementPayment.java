@@ -6,7 +6,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "settlement_payment")
-public class SettlementPayment {
+public class SettlementPayment extends BaseEntity {
     /*
     @EmbeddedId
     Composite key logically belongs together.

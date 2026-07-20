@@ -1,6 +1,6 @@
 package com.rakesh.razorpay.payment.mapper;
 
-import com.rakesh.razorpay.payment.dto.request.PaymentResponse;
+import com.rakesh.razorpay.payment.dto.response.PaymentResponse;
 import com.rakesh.razorpay.payment.entity.Payment;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

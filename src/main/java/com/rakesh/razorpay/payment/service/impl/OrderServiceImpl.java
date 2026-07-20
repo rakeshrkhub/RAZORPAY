@@ -5,7 +5,7 @@ import com.rakesh.razorpay.common.exceptions.BusinessRuleViolationException;
 import com.rakesh.razorpay.common.exceptions.DuplicateResourceException;
 import com.rakesh.razorpay.common.exceptions.ResourceNotFoundException;
 import com.rakesh.razorpay.payment.dto.request.CreateOrderRequest;
-import com.rakesh.razorpay.payment.dto.request.PaymentResponse;
+import com.rakesh.razorpay.payment.dto.response.PaymentResponse;
 import com.rakesh.razorpay.payment.dto.response.OrderResponse;
 import com.rakesh.razorpay.payment.entity.OrderRecord;
 import com.rakesh.razorpay.payment.entity.Payment;

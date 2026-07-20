@@ -1,7 +1,7 @@
 package com.rakesh.razorpay.payment.service;
 
 import com.rakesh.razorpay.payment.dto.request.CreateOrderRequest;
-import com.rakesh.razorpay.payment.dto.request.PaymentResponse;
+import com.rakesh.razorpay.payment.dto.response.PaymentResponse;
 import com.rakesh.razorpay.payment.dto.response.OrderResponse;
 
 import java.util.List;
